@@ -5,15 +5,17 @@ import os
 
 # DAL
 class DAL:
-    def __init__(self,url,user,pw):
+    def __init__(self,url,user,pw,port):
         self.data_db = mysql.connector.connect(
         host=url,
+        database = "dataload",
         user=user,
-        password=pw)
+        password=pw,
+        port =port)
 
     def get_all(self):
         try:
-            my_cursor = self.data_db.cursor()
+            my_cursor = self.data_db.cursor(dictionary=True)
             my_cursor.execute("SELECT * FROM data")
             data = my_cursor.fetchall()
             return data
@@ -21,11 +23,12 @@ class DAL:
             print(f"Error: {ex}")
             raise ex
 
-DB_URL = os.environ['DB_URL']
-DB_USER = os.environ['DB_USER']
-DB_PASS = os.environ['DB_PASS']
+DB_URL = os.getenv("DB_HOST", "localhost")
+DB_USER = os.getenv('DB_USER',"root")
+DB_PASS = os.getenv('DB_PASS',"")
+DB_PORT = os.getenv('DB_PORT',3306)
 
-dal = DAL(DB_URL,DB_USER,DB_PASS)
+dal = DAL(DB_URL,DB_USER,DB_PASS,DB_PORT)
 
 # API
 app = FastAPI()
