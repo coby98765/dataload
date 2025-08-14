@@ -5,10 +5,10 @@ import os
 
 # DAL
 class DAL:
-    def __init__(self,url,user,pw,port):
+    def __init__(self,url,user,pw,port,name):
         self.data_db = mysql.connector.connect(
         host=url,
-        database = "dataload",
+        database = name,
         user=user,
         password=pw,
         port =port)
@@ -23,10 +23,12 @@ class DAL:
             print(f"Error: {ex}")
             raise ex
 
-DB_URL = os.getenv("DB_HOST", "localhost")
+DB_URL = os.getenv("DB_HOST", "mysql")
 DB_USER = os.getenv('DB_USER',"root")
 DB_PASS = os.getenv('DB_PASS',"")
 DB_PORT = os.getenv('DB_PORT',3306)
+DB_NAME = os.getenv('DB_PORT',"dataloaderdb")
+
 
 dal = DAL(DB_URL,DB_USER,DB_PASS,DB_PORT)
 
