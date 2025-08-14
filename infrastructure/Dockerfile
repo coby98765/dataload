@@ -1,5 +1,0 @@
-FROM mysql
-
-WORKDIR /app
-
-COPY . .
