@@ -38,8 +38,14 @@ CREATE TABLE `data` (
 )
 
 --
--- Indexes for dumped tables
+-- Dumping data for table `data`
 --
+
+INSERT INTO `data` (`id`, `first_name`, `last_name`) VALUES
+(1, 'john', 'smith'),
+(2, 'jane', 'dow'),
+(3, 'sam', 'jackson');
+
 
 --
 -- Indexes for table `data`
