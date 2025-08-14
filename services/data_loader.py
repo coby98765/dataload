@@ -30,7 +30,7 @@ DB_PORT = os.getenv('DB_PORT',3306)
 DB_NAME = os.getenv('DB_PORT',"dataloaderdb")
 
 
-dal = DAL(DB_URL,DB_USER,DB_PASS,DB_PORT)
+dal = DAL(DB_URL,DB_USER,DB_PASS,DB_PORT,DB_NAME)
 
 # API
 app = FastAPI()
